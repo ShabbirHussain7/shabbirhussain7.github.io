@@ -57,7 +57,7 @@ const App = () => {
                 theme={theme}
                 toggleTheme={toggleTheme}
             />
-            <main className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+            <main className="max-w-6xl mx-auto p-4 sm:p-6 md:p-8">
                 <Hero handleNavClick={handleNavClick} />
                 <About />
                 <News />
@@ -96,7 +96,7 @@ const Header = ({ activeSection, handleNavClick, isMenuOpen, setIsMenuOpen, them
 
     return (
         <header className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-            <nav className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
+            <nav className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex-shrink-0">
                         <span className="text-xl font-bold text-blue-700 dark:text-blue-400">Shabbir Hussain</span>
@@ -137,11 +137,11 @@ const Header = ({ activeSection, handleNavClick, isMenuOpen, setIsMenuOpen, them
 
 // Hero Section
 const Hero = ({ handleNavClick }) => (
-    <section id="home" className="py-20 md:py-32 text-center">
+    <section id="home" className="py-10 md:py-8 text-center">
         <div className="flex flex-col items-center">
             <img 
-                className="w-32 h-32 rounded-full mb-6 shadow-lg border-4 border-white dark:border-gray-700" 
-                src="https://placehold.co/256x256/E2E8F0/4A5568?text=SH" 
+                className="w-48 h-48 rounded-full mb-6 shadow-lg border-4 border-white dark:border-gray-700" 
+                src="./profile.png" 
                 alt="Shabbir Hussain"
             />
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-2">
@@ -154,7 +154,7 @@ const Hero = ({ handleNavClick }) => (
                 
                 <SocialLink href="https://www.linkedin.com/in/shabbir-hussain27" icon={<Linkedin size={24} />} label="LinkedIn" />
                 <SocialLink href="https://github.com/ShabbirHussain7" icon={<Github size={24} />} label="GitHub" />
-                <SocialLink href="./Shabbir_s_Resume-2.pdf" icon={<FileText size={24} />} label="CV" isDownload />
+                <SocialLink href="./Shabbir_Resume.pdf" icon={<FileText size={24} />} label="CV" />
             </div>
             <button
                 onClick={() => handleNavClick('about')}
@@ -182,14 +182,29 @@ const SocialLink = ({ href, icon, label, isDownload = false }) => (
 
 // About Section
 const About = () => (
-    <section id="about" className="py-16">
+    <section id="about" className="py-8">
         <SectionTitle title="About Me" />
         <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p>
-                I am a Ph.D. student in Computer Science and Engineering at the University of Michigan, Ann Arbor. I am working with <a href="https://ensa.fi" className="text-blue-600 dark:text-blue-400 hover:underline">Dr. Roya Ensafi</a> on  as a member of the <a href="https://censoredplanet.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Censored Planet</a> lab.
+                I’m a first-year Ph.D. student in Computer Science & Engineering at the University of Michigan, Ann Arbor, working with <a href="https://ensa.fi" className="text-blue-600 dark:text-blue-400 hover:underline">Dr. Roya Ensafi</a> in the <a href="https://censoredplanet.org" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Censored Planet</a> lab. My motivation is grounded in the lab’s mission: to bring visibility to censorship and network interference through scalable measurement systems.
             </p>
             <p>
-                My research interests lie at the intersection of security, privacy, and artificial intelligence. I am particularly passionate about developing novel techniques to detect and mitigate online tracking, censorship, and mis-configurations in cloud applications. I am excited by the prospect of leveraging machine learning and large language models to build more secure and privacy-preserving systems.
+                My research sits at the intersection of security, privacy, and AI. I’m currently exploring methods to detect and characterize tracking, censorship, and misconfiguration in cloud and Internet systems, as well as ways to mitigate their impact. I’m particularly interested in how machine learning and language models can contribute to defenses that are robust, transparent, and respectful of privacy.
+            </p>
+            <p>As I develop my work, I lean on a few guiding principles:</p>
+            <ul className="list-disc list-inside space-y-2 pl-4">
+                <li>
+                    Start from measurements: understand real phenomena before building defenses
+                </li>
+                <li>
+                    Aim for interpretability and accountability, not just accuracy
+                </li>
+                <li>
+                    Commit to open tools and shared data (with care for user risk)
+                </li>
+            </ul>
+            <p>
+                Through my research I hope to contribute to making network infrastructure more trustworthy and help defend Internet users’ rights to privacy and openness.
             </p>
         </div>
     </section>
@@ -199,13 +214,13 @@ const About = () => (
 const News = () => {
     const newsItems = [
         { date: 'Aug 2025', text: 'Started my PhD in Computer Science & Engineering at the University of Michigan. Go Blue!' },
-        { date: 'Sep 2024', text: 'Collaborating with Dr. Aastha Mehta at the University of British Columbia on mitigating mis-configurations in serverless applications.' },
+        { date: 'Sep 2024', text: 'Started working with Dr. Aastha Mehta (Assistant Prof, UBC) on cloud security' },
         { date: 'Jun 2024', text: 'Joined Illumina Technology Solutions as a Trainee Software Engineer for the summer.' },
         { date: 'May 2024', text: 'Completed BSCS with Award of High Distinction.' },
     ];
 
     return (
-        <section id="news" className="py-16">
+        <section id="news" className="py-8">
             <SectionTitle title="News" />
             <div className="space-y-4">
                 {newsItems.map((item, index) => (
@@ -223,7 +238,7 @@ const News = () => {
 const Experience = () => {
     const experiences = [
         {
-            role: 'PhD Student & Research Assistant',
+            role: 'PhD Student & Graduate Research Assistant',
             organization: 'University of Michigan / Censored Planet Lab',
             duration: 'Aug 2025 – Present',
             description: 'Working with Dr. Roya Ensafi on research related to internet censorship, security, and privacy.'
@@ -249,7 +264,7 @@ const Experience = () => {
     ];
 
     return (
-        <section id="experience" className="py-16">
+        <section id="experience" className="py-8">
             <SectionTitle title="Experience" />
             <div className="space-y-8 relative">
                  <div className="absolute left-4 sm:left-1/2 top-2 bottom-2 w-0.5 bg-gray-200 dark:bg-gray-700 -ml-px hidden sm:block"></div>
@@ -261,7 +276,6 @@ const Experience = () => {
                             <p className="text-sm text-gray-500">{exp.duration}</p>
                         </div>
                         <div className={`pt-2 sm:pt-0 sm:pl-8 ${index % 2 === 0 ? 'sm:order-2' : ''}`}>
-                            <div className="absolute left-4 top-2 w-3 h-3 bg-blue-600 rounded-full -ml-1.5 ring-8 ring-white dark:ring-gray-900 hidden sm:block"></div>
                             <p className="text-gray-700 dark:text-gray-300">{exp.description}</p>
                         </div>
                     </div>
@@ -274,11 +288,8 @@ const Experience = () => {
 // Footer Component
 const Footer = () => (
     <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6 md:px-8 text-center text-gray-500 dark:text-gray-400">
+        <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 md:px-8 text-center text-gray-500 dark:text-gray-400">
             <p>&copy; {new Date().getFullYear()} Shabbir Hussain. All rights reserved.</p>
-            <p className="text-sm mt-1">
-                Built with React & Tailwind CSS.
-            </p>
         </div>
     </footer>
 );
