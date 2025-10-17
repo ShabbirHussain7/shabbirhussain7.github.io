@@ -62,6 +62,7 @@ const App = () => {
                 <About />
                 <News />
                 <Experience />
+                <ResearchProjects />
             </main>
             <Footer />
         </div>
@@ -75,6 +76,7 @@ const Header = ({ activeSection, handleNavClick, isMenuOpen, setIsMenuOpen, them
         { id: 'about', title: 'About' },
         { id: 'news', title: 'News' },
         { id: 'experience', title: 'Experience' },
+        { id: 'projects', title: 'Projects' },
     ];
     
     const NavItems = ({isMobile}) => (
@@ -284,6 +286,65 @@ const Experience = () => {
         </section>
     );
 };
+
+
+// Research Projects Section
+const ResearchProjects = () => {
+    const projects = [
+        {
+            title: 'Mitigating Serverless Misconfigurations',
+            description: 'Developed a system using formal language policies and LLMs to detect and prevent human errors in serverless cloud applications, improving on the Growlithe (IEEE S&P 2025) system.',
+            tags: ['Python', 'JavaScript', 'LLMs', 'Formal Methods', 'Cloud Security'],
+            link: '#'
+        },
+        {
+            title: 'Web Tracking via HTTP Meta-Data',
+            description: 'Conducted a large-scale measurement study that exposed a novel cookie exfiltration channel, and implemented anti-tracking strategies using machine learning.',
+            tags: ['Web Security', 'Privacy', 'Machine Learning', 'Network Analysis'],
+            link: '#'
+        },
+        {
+            title: 'Wildlife Image Captioning',
+            description: 'Built an image captioning model using Inception V3 and LSTMs for camera trap images to facilitate automated wildlife monitoring, achieving a high BLEU score.',
+            tags: ['Deep Learning', 'PyTorch', 'Computer Vision', 'NLP'],
+            link: '#'
+        },
+        {
+            title: 'Low-Resource Language OCR',
+            description: 'Improved OCR models for languages with Arabic and Perso-Arabic scripts by instrumenting CRAFT and establishing a novel dataset generation pipeline.',
+            tags: ['OCR', 'PyTorch', 'Computer Vision', 'Data Generation'],
+            link: '#'
+        },
+    ];
+
+    return (
+        <section id="projects" className="py-16">
+            <SectionTitle title="Research Projects" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {projects.map((project, index) => (
+                    <ProjectCard key={index} {...project} />
+                ))}
+            </div>
+        </section>
+    );
+};
+
+const ProjectCard = ({ title, description, tags, link }) => (
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 flex flex-col">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{description}</p>
+        <div className="flex flex-wrap gap-2 mb-4">
+            {tags.map(tag => (
+                <span key={tag} className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs font-medium px-2.5 py-0.5 rounded-full">{tag}</span>
+            ))}
+        </div>
+        {link && link !== '#' && (
+            <a href={link} className="text-blue-600 dark:text-blue-400 hover:underline mt-auto self-start">
+                GitHub &rarr;
+            </a>
+        )}
+    </div>
+);
 
 // Footer Component
 const Footer = () => (
