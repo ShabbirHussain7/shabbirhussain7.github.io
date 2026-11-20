@@ -20,7 +20,7 @@ export const site = {
     linkedin: 'https://www.linkedin.com/in/shabbir-hussain27/',
     // Add when available — they are also picked up by the structured data:
     scholar: '',
-    orcid: '',
+    orcid: 'https://orcid.org/0009-0004-7186-1948',
   },
   topics: [
     'Network Security',
