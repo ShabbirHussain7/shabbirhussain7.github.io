@@ -1,4 +1,0 @@
-/* App-specific styles only. Tailwind is imported once in src/index.css */
-html {
-  scroll-behavior: smooth;
-}

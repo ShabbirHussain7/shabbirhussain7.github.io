@@ -1,33 +1,22 @@
 {
   "name": "shabbirhussain7.github.io",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "cv": "sh scripts/build-cv.sh",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --nojekyll"
   },
   "dependencies": {
-    "lucide-react": "^0.545.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "astro": "^7.4.13"
   },
   "devDependencies": {
-    "@eslint/js": "^9.36.0",
-    "@tailwindcss/vite": "^4.1.14",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.4",
-    "eslint": "^9.36.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.22",
-    "gh-pages": "^6.3.0",
-    "globals": "^16.4.0",
-    "tailwindcss": "^4.1.14",
-    "vite": "^7.1.7"
+    "gh-pages": "^6.3.0"
   }
 }

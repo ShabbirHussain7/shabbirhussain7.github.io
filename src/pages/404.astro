@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site.js';
+---
+
+<Base title={`Page not found | ${site.name}`} noindex>
+  <main>
+    <header class="paper-head">
+      <h1>Page not found</h1>
+    </header>
+    <p>That page doesn't exist. <a href="/">Go to the homepage</a>.</p>
+    <p>&nbsp;</p>
+  </main>
+</Base>
