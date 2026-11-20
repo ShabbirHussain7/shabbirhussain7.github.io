@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Point crawlers to the sitemap
 Sitemap: https://shabbirhussain7.github.io/sitemap.xml
