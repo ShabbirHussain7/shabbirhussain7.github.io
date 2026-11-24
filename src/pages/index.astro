@@ -91,7 +91,8 @@ const jsonLd = [
           <a href={people.roya.url}>Prof. Roya Ensafi</a> as part of <a href={people.lab.url}>Censored Planet</a>. My
           research is in network security and privacy: I measure how Internet users are censored and tracked, and
           build systems that help defend against it. Most recently I have worked on how censors detect circumvention
-          tools from the shape of their traffic. My earlier research studied web tracking and misconfigurations in
+          tools from the shape of their traffic, and on <a href="/papers/censhaper/">shaping proxy traffic</a> so it is
+          harder to detect. My earlier research studied web tracking and misconfigurations in
           cloud applications.
         </p>
         <p>
@@ -125,6 +126,7 @@ const jsonLd = [
               <p class="authors" set:html={p.authors.map((a) => (a === site.name ? `<strong>${a}</strong>` : a)).join(', ')} />
               <p class="venue">
                 <em>{p.venue}</em>, {p.year}
+                {p.status && <> · {p.status}</>}
               </p>
               <ul class="actions">
                 {p.links.map((l) => (

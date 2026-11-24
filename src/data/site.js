@@ -41,9 +41,48 @@ export const people = {
 
 export const papers = [
   {
+    slug: 'censhaper',
+    title: 'CenShaper: Shaping Proxy Traffic for Censorship Circumvention',
+    shortTitle: 'CenShaper',
+    pageTitle: 'CenShaper: Shaping Proxy Traffic for Censorship Circumvention',
+    description:
+      'CenShaper shapes each censorship circumvention proxy to look like a specific real TLS server, cutting TLS-over-TLS fingerprinting detection from over 85% to about 3%.',
+    authors: ['Shabbir Hussain', 'Aaron Ortwein', 'Roya Ensafi'],
+    venue: 'arXiv preprint arXiv:2611.31016',
+    venueShort: 'arXiv',
+    status: 'Under submission',
+    year: 2026,
+    date: '2026-11-23',
+    arxiv: '2611.31016',
+    pdf: 'https://arxiv.org/pdf/2611.31016',
+    links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2611.31016' },
+      { label: 'PDF', href: 'https://arxiv.org/pdf/2611.31016' },
+      { label: 'Code access', href: '/papers/censhaper/#code' },
+    ],
+    // Shown on the paper page. The code is shared privately while the paper is under review.
+    related: `A follow-up to <a href="/papers/cenkl/">CenKL</a> (IEEE S&amp;P 2027).`,
+    codeHtml: `The paper is under submission, and the code will be made public after the review process. In the meantime, if you develop a circumvention tool and would like to use CenShaper, please <a href="mailto:shabbirx@umich.edu?subject=CenShaper%20code%20access">reach out</a>. My team and I are happy to share the code and help integrate it into your tool. CenShaper runs as a sidecar alongside the proxy, so integration does not require changes to the proxy’s own code.`,
+    abstract:
+      'Modern commodity DPI systems are capable of analyzing packet sizes, directions, and timings to detect circumvention tools even when those tools use sophisticated obfuscation. The anti-censorship community has called for innovation in traffic shaping and built an ecosystem that facilitates the adoption of new shaping techniques. However, a fundamental gap is halting progress: what should circumvention traffic look like? Past experience with traffic shaping has underscored that effective shaping must produce traffic that looks like legitimate Internet traffic while limiting the ability of censors to identify multiple proxies through shared fingerprints. In this paper, we use our access to large-scale real-world TLS traffic at a regional ISP to analyze approximately 12 million connections, finding that individual servers differ substantially from the broader TLS population and that traffic patterns vary across services. Combining these empirical observations with past experience with traffic shaping, we build CenShaper, which shapes each proxy’s traffic to look like a selected TLS server. To reproduce these server-specific patterns, CenShaper trains a shared generative model using traffic from TLS connections to many servers and adapts it for each proxy using a small sample of recorded connections to its selected server. Our model evaluation shows that fingerprints learned from known proxies transfer poorly to proxies imitating previously unseen TLS services. In end-to-end testing, CenShaper reduces the detection rate of TLS-over-TLS fingerprinting from over 85% to approximately 3% at a 1% false positive rate. Finally, we show how running CenShaper as a sidecar process simplifies integration with existing circumvention tools, making it a practical defense against increasingly powerful traffic analysis attacks.',
+    bibtex: `@misc{hussain2026censhaper,
+  title         = {{CenShaper: Shaping Proxy Traffic for Censorship Circumvention}},
+  author        = {Hussain, Shabbir and Ortwein, Aaron and Ensafi, Roya},
+  year          = {2026},
+  eprint        = {2611.31016},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR}
+}`,
+  },
+  {
     slug: 'cenkl',
     title: 'CenKL: Information-Theoretic Visibility into Censorship Circumvention Traffic Patterns',
     shortTitle: 'CenKL',
+    pageTitle: 'CenKL: Visibility into Censorship Circumvention Traffic',
+    description:
+      'CenKL (IEEE S&P 2027) measures how distinguishable censorship circumvention traffic is from real-world TLS, and which packets give it away.',
+    conference: 'IEEE Symposium on Security and Privacy',
+    publisher: 'IEEE',
     authors: [
       'Aaron Ortwein',
       'Armin Huremagic',
@@ -74,6 +113,10 @@ export const papers = [
 ];
 
 export const news = [
+  {
+    date: 'Nov 2026',
+    html: `My first first-author paper, <a href="/papers/censhaper/">CenShaper</a>, is out on arXiv! It disguises each circumvention proxy as a different real-world TLS server, making proxies much harder to detect through traffic analysis. Tool developers interested in the code can <a href="/papers/censhaper/#code">reach out</a>.`,
+  },
   {
     date: 'Nov 2026',
     html: `Lantern's <a href="https://samizdat.lantern.io/">Samizdat</a> protocol is now using <a href="/papers/cenkl/">CenKL</a> and its proof-of-concept traffic shaping architecture, ProxyShaper!`,

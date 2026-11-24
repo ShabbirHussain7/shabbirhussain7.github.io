@@ -8,7 +8,7 @@ export function getStaticPaths() {
 
 const { paper } = Astro.props;
 const url = `${site.url}/papers/${paper.slug}/`;
-const description = `${paper.shortTitle} (${paper.venueShort} ${paper.year}) measures how distinguishable censorship circumvention traffic is from real-world TLS, and which packets give it away.`;
+const description = paper.description;
 
 const jsonLd = [
   {
@@ -20,15 +20,16 @@ const jsonLd = [
     headline: paper.title,
     name: paper.title,
     abstract: paper.abstract,
-    datePublished: String(paper.year),
+    datePublished: paper.date ?? String(paper.year),
     author: paper.authors.map((name) =>
       name === site.name
         ? { '@type': 'Person', '@id': `${site.url}/#person`, name, url: `${site.url}/` }
         : { '@type': 'Person', name }
     ),
-    isPartOf: { '@type': 'PublicationIssue', name: `${paper.venue} ${paper.year}` },
-    publisher: { '@type': 'Organization', name: 'IEEE' },
-    sameAs: paper.pdf,
+    ...(paper.conference && { isPartOf: { '@type': 'PublicationIssue', name: `${paper.venue} ${paper.year}` } }),
+    ...(paper.publisher && { publisher: { '@type': 'Organization', name: paper.publisher } }),
+    ...(paper.arxiv && { identifier: `arXiv:${paper.arxiv}` }),
+    sameAs: paper.arxiv ? `https://arxiv.org/abs/${paper.arxiv}` : paper.pdf,
     inLanguage: 'en',
   },
   {
@@ -43,7 +44,7 @@ const jsonLd = [
 ---
 
 <Base
-  title={`${paper.shortTitle}: Visibility into Censorship Circumvention Traffic | ${site.name}`}
+  title={`${paper.pageTitle} | ${site.name}`}
   ogTitle={paper.title}
   description={description}
   ogType="article"
@@ -52,8 +53,9 @@ const jsonLd = [
   <Fragment slot="head">
     <meta name="citation_title" content={paper.title} />
     {paper.authors.map((a) => <meta name="citation_author" content={a} />)}
-    <meta name="citation_publication_date" content={String(paper.year)} />
-    <meta name="citation_conference_title" content="IEEE Symposium on Security and Privacy" />
+    <meta name="citation_publication_date" content={paper.date ?? String(paper.year)} />
+    {paper.conference && <meta name="citation_conference_title" content={paper.conference} />}
+    {paper.arxiv && <meta name="citation_arxiv_id" content={paper.arxiv} />}
     <meta name="citation_pdf_url" content={paper.pdf} />
   </Fragment>
 
@@ -64,7 +66,8 @@ const jsonLd = [
     <header class="paper-head">
       <h1>{paper.title}</h1>
       <p class="authors" set:html={paper.authors.map((a) => (a === site.name ? `<strong>${a}</strong>` : a)).join(', ')} />
-      <p class="venue"><em>{paper.venue}</em>, {paper.year}</p>
+      <p class="venue"><em>{paper.venue}</em>, {paper.year}{paper.status && <> · {paper.status}</>}</p>
+      {paper.related && <p class="venue" set:html={paper.related} />}
       <ul class="actions">
         {
           paper.links.map((l) => (
@@ -80,6 +83,15 @@ const jsonLd = [
       <h2>Abstract</h2>
       <p>{paper.abstract}</p>
     </section>
+
+    {
+      paper.codeHtml && (
+        <section id="code">
+          <h2>Code</h2>
+          <p set:html={paper.codeHtml} />
+        </section>
+      )
+    }
 
     <section id="bibtex">
       <h2>BibTeX</h2>
